@@ -6,6 +6,9 @@ import * as fb from "./Global/Firebase/firebase_auth_module.js"
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
 let entityName = localStorage.getItem('global_entityName')
+let customer = localStorage.getItem('global_selected_customer')
+customer = customer.replace(/_/g, ' ')
+$('#id-customer-name').text(customer)
 
 // Recupera l'url della pagina visualizzata
 // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
@@ -26,7 +29,6 @@ fb.onAuthStateChanged()
 // controlla quando viene premuto il tasto di logout
 // alla pressione del tasto, l'utente viene reindirizzato alla pagina di login
 $('#id-user-logout').click(() => { fb.signOut() })
-
 
 // Recupera i nomi delle macchine installate dal cliente.
 // vengono recuperate sia le celle che le linee.
