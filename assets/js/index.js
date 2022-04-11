@@ -17,6 +17,7 @@ if(window.location.protocol == 'https:'){
 fb.onAuthStateChanged()
 	.then(user => {
 		let global_customer
+		console.log(user)
 		tw.getUser(user.email)
 		.then(customerRow => {
 			global_customer = customerRow.rows[0].Customer
@@ -36,5 +37,8 @@ fb.onAuthStateChanged()
 		  	window.location.href = './02_Dashboard.html'
 		  }
 		})
-		.catch(error => console.error(error))
+	})
+		.catch(error => {
+			console.error(error)
+			window.location.href = './90.signIn.html'
 	})

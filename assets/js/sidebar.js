@@ -101,15 +101,18 @@ tw.service_90_sidebar(entityName)
         // pages
         let href_dashboard        = '40_line_dashboard.html?entityName=' + res.lines[i-1].entityName
         let href_history          = '41_line_history.html?entityName=' + res.lines[i-1].entityName
+        let href_dough            = '45_line_dough.html?entityName=' + res.lines[i-1].entityName
         // id
         let idAccordion           = '#id-accordion-line-' + i
         let idBtnAccordion        = '#id-btn-accordion-line-' + i
         let idCollapsePanel       = '#id-collapse-panel-line-' + i
         let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
         let id_nav_history_line   = '#id-nav-history-line-' + i
+        let id_nav_dough_line     = '#id-nav-dough-line-' + i
         // link
         let nav_dashboard_link    = id_nav_dashboard_line + ' a'
         let nav_history_link      = id_nav_history_line + ' a'
+        let nav_dough_link        = id_nav_dough_line + ' a'
         let span_status           = id_nav_dashboard_line + 'div a :last-child'
         // Visualizza il menu delle celle
         $(idAccordion).removeClass('d-none')
@@ -124,10 +127,13 @@ tw.service_90_sidebar(entityName)
         // se la pagina della dashboard o dello storico
         if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
         if(pageName == href_history){ $(nav_history_link).addClass('active') }
+        if(pageName == href_dough){ $(nav_dough_link).addClass('active') }
         // effettua modifiche agli elementi sottostanti
         $(nav_dashboard_link).attr('href', href_dashboard)
         $(nav_history_link).attr('href', href_history)
         $(span_status).text(res.lines[i-1].status)
+
+        $(nav_dough_link).attr('href', href_dough)
       }
     }
   }catch(e){ console.error(e) }

@@ -131,6 +131,19 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	return chart
 }
 
+function createPieChart(IDdivChart){
+	// Themes begin
+	am4core.useTheme(am4themes_animated)
+	// Themes end
+
+	// Create chart instance
+	var chart = am4core.create(IDdivChart, am4charts.PieChart)
+
+	chart.hiddenState.properties.radius = am4core.percent(0)
+
+	return chart
+}
+
 function refreshLegendSize(chart, IDdivLegend){
 	let id = '#' + IDdivLegend
 	$(id).height(chart.legend.contentHeight)
@@ -237,6 +250,21 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	return series;
 }
 
+function createPieSeries(chart, seriesName, categoryName){
+	// Add and configure Series
+	var pieSeries = chart.series.push(new am4charts.PieSeries());
+	pieSeries.dataFields.value = seriesName;
+	pieSeries.dataFields.category = categoryName;
+	pieSeries.slices.template.stroke = am4core.color("#fff");
+	pieSeries.slices.template.strokeOpacity = 1;
+	
+	pieSeries.labels.template.text = "{category}: {value.value}";
+
+	// This creates initial animation
+	pieSeries.hiddenState.properties.opacity = 1
+	pieSeries.hiddenState.properties.endAngle = -90
+	pieSeries.hiddenState.properties.startAngle = -90
+}
 // Inserisce i dati nel grafico
 // I dati vengono recuperati tramite un servizio di thingworx che effettua query ad influxdb
 function setChartData(chart, query, ringclass) {
@@ -284,4 +312,4 @@ function getExport(chart){
 }
 
 
-export {createXYChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, setChartData, getExport}
+export {createXYChart, createPieChart, refreshLegendSize, createXYChartNoLegend, createColumnSeries, createLineSeries, createPieSeries, setChartData, getExport}
