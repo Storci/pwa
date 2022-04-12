@@ -104,15 +104,27 @@ tw.service_90_sidebar(entityName)
         // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
         // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
         for(let i=1; i<=res.lines.length; i++){
+          // definisce gli id dell'accordion della linea
+          // il ciclo for permette di selezionare il menù corretto in base alla linea in scansione
+          // All'interno del div idCollapsePanel sono contenuti tutti i link alle pagine delle linea
+          let idAccordion           = '#id-accordion-line-' + i
+          let idBtnAccordion        = '#id-btn-accordion-line-' + i
+          let idCollapsePanel       = '#id-collapse-panel-line-' + i
+
+          // Effettua un ciclo per ogni elemento 'li' contenuto nel div idCollapsePanel 
+          $(idCollapsePanel).children('li').forEach((el, id) => {
+            console.log(el)
+          })
+
+
+
           // pages
           let href_dashboard        = '40_line_dashboard.html?entityName=' + res.lines[i-1].entityName
           let href_history          = '41_line_history.html?entityName=' + res.lines[i-1].entityName
           let href_dough            = '45_line_dough.html?entityName=' + res.lines[i-1].entityName
           let href_extruder         = '46_line_extruder.html?entityName=' + res.lines[i-1].entityName
-          // id
-          let idAccordion           = '#id-accordion-line-' + i
-          let idBtnAccordion        = '#id-btn-accordion-line-' + i
-          let idCollapsePanel       = '#id-collapse-panel-line-' + i
+
+          // id link
           let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
           let id_nav_history_line   = '#id-nav-history-line-' + i
           let id_nav_dough_line     = '#id-nav-dough-line-' + i
