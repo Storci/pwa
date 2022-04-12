@@ -17,7 +17,7 @@ if(window.location.protocol == 'https:'){
 */
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
-fb.onAuthStateChanged_2()
+//fb.onAuthStateChanged_2()
 // Recupera dei dati dalle local storage
 let selectedCustomer = localStorage.getItem("global_selected_customer")
 let selectedLine 		 = localStorage.getItem("global_selected_line")
