@@ -13,10 +13,7 @@ let entityName = urlParams.get('entityName')
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
-//fb.onAuthStateChanged_2()
-// Recupera dei dati dalle local storage
-let selectedCustomer = localStorage.getItem("global_selected_customer")
-let selectedLine 		 = localStorage.getItem("global_selected_line")
+fb.onAuthStateChanged_2()
 
 // Istanzia i grafici dell'attuale e dello storico
 // I grafici devono essere istanziati una volta solamente
@@ -49,7 +46,7 @@ am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Acqua', 'time', 'P
 am.createLineSeries(chartHistoryProduction, 'SP - Temperatura Acqua', 'time', 'SP_Temp_Acqua', '°C', 0, false, true)
 am.createLineSeries(chartHistoryProduction, "PV - kcal/h", "time", "PV_Consumi", "kcal/h", 1, false, true)
 // Crea le series da visualizzare nel grafico
-am.createPieSeries(chartPieSettingsProduction, 'value', 'category', 'unit')
+am.createPieSeries(chartPieSettingsProduction, 'value', 'category', 'unit', 'kg/h')
 //am.createPieSeries(chartPieSettingsProduction, 'value_2', 'category_2', 'l/h')
 
 // Ricalcola la dimensione del div della legenda - viene eseguito ogni secondo
@@ -86,6 +83,8 @@ setCardsValue(entityName, chartPieSettingsProduction)
 // Funzioni cicliche
 setInterval(setCardsValue, 10000, entityName, chartPieSettingsProduction);	// ogni 10 sec
 
+
+console.log(chartPieSettingsProduction)
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
 // Prerequisiti: le label che si vogliono popolare con i valori da thingworx devono avere
 // la seguente classe '.thingworx-property-value'.
@@ -97,50 +96,26 @@ function setCardsValue(entityName, chart){
 		.then(info => {
 			// Assegna alle varie label il valore corretto recuperato da thingworx
 			$('[propertyname]').each(function(){ $(this).text(info[$(this).attr('propertyname')])	})
-
+			// Esegue il ciclo per ogni progress bar trovata nella pagina
 			$('[pg-value-propertyname]').each(function(){
-				$(this).text(info[$(this).attr('propertyname')])
+				// Definisce la variabile a 0
 				let value = 0
-
 				try{
+					// Cntrolla se è stato impostato un valore per l'attributo 'pg-maxvalue-propertyname'
+					// Se presente, calcola la percentuale del valore attuale 'pg-value-propertyname' con quella del valore massimo 'pg-maxvalue-propertyname'
+					// se non presente, calcola la percentuale del valore attuale 'pg-value-propertyname' con quella del valore massimo 'aria-valuemax'
 					if($(this).attr('pg-maxvalue-propertyname')){
 						value = (parseFloat(info[$(this).attr('pg-value-propertyname')]) / parseFloat(info[$(this).attr('pg-maxvalue-propertyname')])) * 100
 					}else{
 						value = (parseFloat(info[$(this).attr('pg-value-propertyname')]) / $(this).attr('aria-valuemax')) * 100
 					}
-
-				}catch(e){
-					console.warn('1 - ' + e)
-				}
-
+				}catch(e){ console.warn('1 - ' + e)	}
+				// Imposta il width del riempimento
 		    let prgbar_value = 'width:' + value + '%'
+				// Assegna il valore di riempimento alla progress bar relativa
 		    $(this).attr('style', prgbar_value)
 			})
-
-			/*
-			// Definisce la percentuale da visualizzare nelle progress bar
-		  try{
-		    let value = (parseFloat(info.Impasto_PV_Impasto_Totale) / 1000) * 100  // 1000 -> portata massima della linea, da rendere dinamico
-		    let prgbar_value = 'width:' + value + '%'
-		    $('#id-progress-impasto-totale').attr('style', prgbar_value)
-		  }catch(e){console.log('e1 - ' + e)}
-		  try{
-		    let value = (parseFloat(info.PV_Portata_Sfarinati) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-		    let prgbar_value = 'width:' + value + '%'
-		    $('#id-progress-sfarinati').attr('style', prgbar_value)
-		  }catch(e){console.log('e2 - ' + e)}
-		  try{
-		    let value = (parseFloat(info.Impasto_PV_Dosatore_Acqua) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-		    let prgbar_value = 'width:' + value + '%'
-		    $('#id-progress-acqua').attr('style', prgbar_value)
-		  }catch(e){console.log('e3 - ' + e)}
-		  try{
-		    let valuevalue = (parseFloat(info.Impasto_PV_Dosatore_Liquido_1) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-		    let prgbar_value = 'width:' + value + '%'
-		    $('#id-progress-liquido-1').attr('style', prgbar_value)
-		  }catch(e){console.log('e4 - ' + e)}
-			*/
-
+			// Genera il set di dati da visualizzare nel pie chart
 		  let data = [
 		    { value: info.SP_Portata_Sfarinati, 					 category: 'Semola',					 unit: 'kg/h', color: am4core.color('#ffc107')},
 		    { value: info.Impasto_SP_Dosatore_Acqua_Litri, category: 'Acqua', 					 unit: 'l/h',  color: am4core.color('#0dcaf0')  },

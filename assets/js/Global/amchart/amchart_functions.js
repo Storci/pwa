@@ -19,7 +19,7 @@ let colorChart = [
 	[
 		am4core.color("#3289be"),
 		am4core.color("#004071"),
-		am4core.color("#7e57c2"),
+		am4core.color("#6f42c1"),
 		am4core.color("#ffa726"),
 	  am4core.color("#ef5350"),
 		am4core.color("#c62828"),
@@ -137,7 +137,7 @@ function createPieChart(IDdivChart){
 	// Themes end
 
 	// Create chart instance
-	var chart = am4core.create(IDdivChart, am4charts.PieChart)
+	let chart = am4core.create(IDdivChart, am4charts.PieChart)
 
 	chart.hiddenState.properties.radius = am4core.percent(0)
 
@@ -250,12 +250,13 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	return series;
 }
 
-function createPieSeries(chart, seriesName, categoryName, unitName){
+function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit){
 	// Add and configure Series
 	var pieSeries = chart.series.push(new am4charts.PieSeries());
 	pieSeries.dataFields.value = seriesName;
 	pieSeries.dataFields.category = categoryName;
 	pieSeries.dataFields.unit = unitName;
+	pieSeries.innerRadius = am4core.percent(90);
 	pieSeries.slices.template.stroke = am4core.color("#fff");
 	pieSeries.slices.template.strokeOpacity = 1;
 	pieSeries.slices.template.propertyFields.fill = "color";
@@ -266,6 +267,13 @@ function createPieSeries(chart, seriesName, categoryName, unitName){
 	pieSeries.hiddenState.properties.opacity = 1
 	pieSeries.hiddenState.properties.endAngle = -90
 	pieSeries.hiddenState.properties.startAngle = -90
+
+	let label = chart.seriesContainer.createChild(am4core.Label);
+	label.horizontalCenter = "middle";
+	label.verticalCenter = "middle";
+	label.adapter.add("text", function(text, target){
+		return "[font-size:18px]total[/]:\n[bold font-size:30px]" + pieSeries.dataItem.values.value.sum + " " + totalUnit + "[/]";
+	})
 }
 // Inserisce i dati nel grafico
 // I dati vengono recuperati tramite un servizio di thingworx che effettua query ad influxdb
