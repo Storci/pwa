@@ -57,7 +57,7 @@ tw.service_90_sidebar(entityName)
         $(idAccordion).removeClass('d-none')
         // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
         // se la pagina corrisponde, allora viene aperto il menù delle celle.
-        if(pageName.includes('dryer')){
+        if(pageName.includes('dryer-')){
           $(idBtnAccordion).attr('aria-expanded', 'true')
           $(idBtnAccordion).removeClass('collapsed')
           $(idCollapsePanel).addClass('show')
@@ -111,32 +111,23 @@ tw.service_90_sidebar(entityName)
           let idBtnAccordion        = '#id-btn-accordion-line-' + i
           let idCollapsePanel       = '#id-collapse-panel-line-' + i
 
-          // Effettua un ciclo per ogni elemento 'li' contenuto nel div idCollapsePanel 
-          $(idCollapsePanel).children('li').forEach((el, id) => {
-            console.log(el)
+          // Effettua un ciclo per ogni elemento 'li' contenuto nel div idCollapsePanel
+          $(idCollapsePanel).children('li').each((j, elem) => {
+            // Recupera href impostato nell'elemento a
+            let href = $(elem).children('a').attr('href')
+            // Aggiunge il parametro da passare alla pagina
+            href += '?entityName=' + res.lines[i-1].entityName
+            // Imposta l'elememento con il nuovo href
+            $(elem).children('a').attr('href', href)
+            // Aggiunge la classe active se ci troviamo in una pagina della linea
+            if(pageName == href){ $(elem).children('a').addClass('active') }
           })
-
-
-
-          // pages
-          let href_dashboard        = '40_line_dashboard.html?entityName=' + res.lines[i-1].entityName
-          let href_history          = '41_line_history.html?entityName=' + res.lines[i-1].entityName
-          let href_dough            = '45_line_dough.html?entityName=' + res.lines[i-1].entityName
-          let href_extruder         = '46_line_extruder.html?entityName=' + res.lines[i-1].entityName
 
           // id link
           let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
-          let id_nav_history_line   = '#id-nav-history-line-' + i
-          let id_nav_dough_line     = '#id-nav-dough-line-' + i
-          let id_nav_extruder_line  = '#id-nav-extruder-line-' + i
-
-          // link
-          let nav_dashboard_link    = id_nav_dashboard_line + ' a'
-          let nav_history_link      = id_nav_history_line + ' a'
-          let nav_dough_link        = id_nav_dough_line + ' a'
-          let nav_extruder_link     = id_nav_extruder_line + ' a'
-
           let span_status           = id_nav_dashboard_line + 'div a :last-child'
+          $(span_status).text(res.lines[i-1].status)
+
           // Visualizza il menu delle celle
           $(idAccordion).removeClass('d-none')
           // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
@@ -146,19 +137,6 @@ tw.service_90_sidebar(entityName)
             $(idBtnAccordion).removeClass('collapsed')
             $(idCollapsePanel).addClass('show')
           }
-          // Controlla nello specifico quale pagina è in visualizzazione
-          // se la pagina della dashboard o dello storico
-          if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
-          if(pageName == href_history){ $(nav_history_link).addClass('active') }
-          if(pageName == href_dough){ $(nav_dough_link).addClass('active') }
-          if(pageName == href_extruder){ $(nav_extruder_link).addClass('active') }
-          // effettua modifiche agli elementi sottostanti
-          $(nav_dashboard_link).attr('href', href_dashboard)
-          $(nav_history_link).attr('href', href_history)
-          $(span_status).text(res.lines[i-1].status)
-
-          $(nav_dough_link).attr('href', href_dough)
-          $(nav_extruder_link).attr('href', href_extruder)
         }
       }
     }catch(e){ console.error(e) }
