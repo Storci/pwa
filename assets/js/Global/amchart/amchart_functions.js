@@ -250,15 +250,17 @@ function createLineSeries(chart, seriesName, labelX, labelY, UM, yAxis=0, Enable
 	return series;
 }
 
-function createPieSeries(chart, seriesName, categoryName){
+function createPieSeries(chart, seriesName, categoryName, unitName){
 	// Add and configure Series
 	var pieSeries = chart.series.push(new am4charts.PieSeries());
 	pieSeries.dataFields.value = seriesName;
 	pieSeries.dataFields.category = categoryName;
+	pieSeries.dataFields.unit = unitName;
 	pieSeries.slices.template.stroke = am4core.color("#fff");
 	pieSeries.slices.template.strokeOpacity = 1;
-	
-	pieSeries.labels.template.text = "{category}: {value.value}";
+	pieSeries.slices.template.propertyFields.fill = "color";
+
+	pieSeries.labels.template.text = "{category}: {value.value} {unit}";
 
 	// This creates initial animation
 	pieSeries.hiddenState.properties.opacity = 1

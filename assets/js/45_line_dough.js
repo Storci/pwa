@@ -27,8 +27,9 @@ let selectedLine 		 = localStorage.getItem("global_selected_line")
 // - Numero di assi Y associate al GRAFICO
 // - Array con le unità di misura
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']
-let chartActualProduction = am.createXYChart("IDTrendActualProduction", 'IDLegendActualProduzione', 0, 2, arrayUM)
-let chartHistoryProduction = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 0, 2, arrayUM)
+let chartActualProduction 		 = am.createXYChart("IDTrendActualProduction", 'IDLegendActualProduzione', 0, 2, arrayUM)
+let chartHistoryProduction 		 = am.createXYChart("IDTrendHistoryProduction", 'IDLegendHistoryProduction', 0, 2, arrayUM)
+let chartPieSettingsProduction = am.createPieChart('id-div-pie-chart')
 // Crea le series da visualizzare sul grafico
 am.createLineSeries(chartActualProduction, "PV - Impasto", "time", "PV_Impasto", "kg/h", 0, false, false, true)
 am.createLineSeries(chartActualProduction, "SP - Impasto", "time", "SP_Impasto", "kg/h", 0, true, false)
@@ -47,6 +48,9 @@ am.createLineSeries(chartHistoryProduction, 'SP - Portata Acqua', 'time', 'SP_Po
 am.createLineSeries(chartHistoryProduction, 'PV - Temperatura Acqua', 'time', 'PV_Temp_Acqua', '°C', 0, false, true)
 am.createLineSeries(chartHistoryProduction, 'SP - Temperatura Acqua', 'time', 'SP_Temp_Acqua', '°C', 0, false, true)
 am.createLineSeries(chartHistoryProduction, "PV - kcal/h", "time", "PV_Consumi", "kcal/h", 1, false, true)
+// Crea le series da visualizzare nel grafico
+am.createPieSeries(chartPieSettingsProduction, 'value', 'category', 'unit')
+//am.createPieSeries(chartPieSettingsProduction, 'value_2', 'category_2', 'l/h')
 
 // Ricalcola la dimensione del div della legenda - viene eseguito ogni secondo
 setInterval(am.refreshLegendSize, 1000, chartActualProduction, 'IDLegendActualProduzione')
@@ -77,77 +81,73 @@ common.actualLineProduction(chartActualProduction, query, entityName)
 // ******************** STORICO PRODUZIONI ********************
 common.historyLineProduction(chartHistoryProduction, query, entityName)
 
-// PIE chart
-let chartPie = am.createPieChart('id-div-pie-chart')
-am.createPieSeries(chartPie, 'value', 'category')
-
-setCardsValue(entityName, chartPie)
+// ******************** RECUPERO DATI TW ********************
+setCardsValue(entityName, chartPieSettingsProduction)
 // Funzioni cicliche
-setInterval(setCardsValue, 10000, entityName, chartPie);	// ogni 10 sec
-
-
-console.log($('#IDTimeStart'))
-$('#IDTimeStart').data("DateTimePicker").show();
+setInterval(setCardsValue, 10000, entityName, chartPieSettingsProduction);	// ogni 10 sec
 
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
 // Prerequisiti: le label che si vogliono popolare con i valori da thingworx devono avere
 // la seguente classe '.thingworx-property-value'.
 // Inoltre ogni label deve avere una key chiamata 'propertyname', il valore della key deve essere
 // uguale al nome della property di thingworx che ritorna il servizio.
-async function setCardsValue(entityName, chart){
-	// Dichiara la variabile
-	let info
+function setCardsValue(entityName, chart){
 	// Richiama il servizio di thingworx.
-	await tw.getLineInfo(entityName)
-		.then(result => info = result)
+	tw.getLineInfo(entityName)
+		.then(info => {
+			// Assegna alle varie label il valore corretto recuperato da thingworx
+			$('[propertyname]').each(function(){ $(this).text(info[$(this).attr('propertyname')])	})
+
+			$('[pg-value-propertyname]').each(function(){
+				$(this).text(info[$(this).attr('propertyname')])
+				let value = 0
+
+				try{
+					if($(this).attr('pg-maxvalue-propertyname')){
+						value = (parseFloat(info[$(this).attr('pg-value-propertyname')]) / parseFloat(info[$(this).attr('pg-maxvalue-propertyname')])) * 100
+					}else{
+						value = (parseFloat(info[$(this).attr('pg-value-propertyname')]) / $(this).attr('aria-valuemax')) * 100
+					}
+
+				}catch(e){
+					console.warn('1 - ' + e)
+				}
+
+		    let prgbar_value = 'width:' + value + '%'
+		    $(this).attr('style', prgbar_value)
+			})
+
+			/*
+			// Definisce la percentuale da visualizzare nelle progress bar
+		  try{
+		    let value = (parseFloat(info.Impasto_PV_Impasto_Totale) / 1000) * 100  // 1000 -> portata massima della linea, da rendere dinamico
+		    let prgbar_value = 'width:' + value + '%'
+		    $('#id-progress-impasto-totale').attr('style', prgbar_value)
+		  }catch(e){console.log('e1 - ' + e)}
+		  try{
+		    let value = (parseFloat(info.PV_Portata_Sfarinati) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
+		    let prgbar_value = 'width:' + value + '%'
+		    $('#id-progress-sfarinati').attr('style', prgbar_value)
+		  }catch(e){console.log('e2 - ' + e)}
+		  try{
+		    let value = (parseFloat(info.Impasto_PV_Dosatore_Acqua) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
+		    let prgbar_value = 'width:' + value + '%'
+		    $('#id-progress-acqua').attr('style', prgbar_value)
+		  }catch(e){console.log('e3 - ' + e)}
+		  try{
+		    let valuevalue = (parseFloat(info.Impasto_PV_Dosatore_Liquido_1) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
+		    let prgbar_value = 'width:' + value + '%'
+		    $('#id-progress-liquido-1').attr('style', prgbar_value)
+		  }catch(e){console.log('e4 - ' + e)}
+			*/
+
+		  let data = [
+		    { value: info.SP_Portata_Sfarinati, 					 category: 'Semola',					 unit: 'kg/h', color: am4core.color('#ffc107')},
+		    { value: info.Impasto_SP_Dosatore_Acqua_Litri, category: 'Acqua', 					 unit: 'l/h',  color: am4core.color('#0dcaf0')  },
+		    { value: info.Impasto_SP_Dosatore_Liquido_1, 	 category: 'Uovo / Colorante', unit: 'l/h',  color: am4core.color('#6c757d')  },
+		    { value: info.Impasto_SP_Dosatore_Polvere_1, 	 category: 'Additivo', 			   unit: 'kg/h', color: am4core.color('#198754') },
+		  ]
+		  chart.data = data
+		})
 		.catch(error => console.error(error))
-	// Assegna alle varie label il valore corretto recuperato da thingworx
-	$('[propertyname]').each(function(){
-		$(this).text(info[$(this).attr('propertyname')])
-	})
-
-  let value = 0
-  let prgbar_value = 0
-
-  try{
-    value = (parseFloat(info.Impasto_PV_Impasto_Totale) / 1000) * 100  // 1000 -> portata massima della linea, da rendere dinamico
-    let prgbar_value = 'width:' + value + '%'
-    $('#id-progress-impasto-totale').attr('style', prgbar_value)
-  }catch(e){console.log('e1 - ' + e)}
-  try{
-    value = (parseFloat(info.PV_Portata_Sfarinati) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-    prgbar_value = 'width:' + value + '%'
-    $('#id-progress-sfarinati').attr('style', prgbar_value)
-  }catch(e){console.log('e2 - ' + e)}
-  try{
-    value = (parseFloat(info.Impasto_PV_Dosatore_Acqua) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-    prgbar_value = 'width:' + value + '%'
-    $('#id-progress-acqua').attr('style', prgbar_value)
-  }catch(e){console.log('e3 - ' + e)}
-  try{
-    value = (parseFloat(info.Impasto_PV_Dosatore_Liquido_1) / parseFloat(info.Impasto_SP_Impasto_Totale)) * 100
-    prgbar_value = 'width:' + value + '%'
-    $('#id-progress-liquido-1').attr('style', prgbar_value)
-  }catch(e){console.log('e4 - ' + e)}
-
-
-  let data = [
-    {
-      value: info.SP_Portata_Sfarinati,
-      category: 'Semola'
-    },
-    {
-      value: info.Impasto_SP_Dosatore_Acqua_Litri,
-      category: 'Acqua'
-    },
-    {
-      value: info.Impasto_SP_Dosatore_Liquido_1,
-      category: 'Uovo / Colorante'
-    },
-    {
-      value: info.Impasto_SP_Dosatore_Polvere_1,
-      category: 'Additivo'
-    },
-  ]
-  chart.data = data
 }
