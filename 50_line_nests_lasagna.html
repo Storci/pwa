@@ -27,7 +27,7 @@
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
         <!-- CUSTOM SCRIPT -->         
         <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script src="./assets/js/45_line_dough.js" type="module"></script>         
+        <script src="./assets/js/50_line_nests_lasagna.js" type="module"></script>         
         <!-- The core Firebase JS SDK is always required and must be listed first -->         
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
@@ -46,7 +46,7 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
             firebase.analytics();
-        </script>
+        </script>         
     </head>     
     <body> 
         <script> $('body').addClass('d-none')</script>         
@@ -132,28 +132,27 @@
                                         </li>                                         
                                         <li class="nav-item" data-pg-name="history" id="id-nav-history-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="41_line_history.html"><span class="material-icons-outlined">history</span><span class="ms-3">Storico</span>&nbsp;</a> 
                                         </li>                                         
-                                        <li class="nav-item" data-pg-name="dough" id="id-nav-dough-line-1">
-                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html"><span class="material-icons-outlined">grain</span><span class="ms-3">Gruppo Impasto</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1"><a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Estrusore</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1">
-                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Avanzamento Telai</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1"><a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Deimpilatore</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="spreader" id="id-nav-spreader-line-1">
-                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Stenditrice</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1"><a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Nidi Lasagna</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1">
-                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Trabatto</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-1"><a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Omnidryer</span>&nbsp;</a> 
-                                        </li>
-                                        <li class="nav-item" data-pg-name="stacker" id="id-nav-stacker-line-1">
-                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Impilatore</span>&nbsp;</a> 
+                                        <li class="nav-item" data-pg-name="dough" id="id-nav-dough-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="45_line_dough.html"><span class="material-icons-outlined">grain</span><span class="ms-3">Gruppo Impasto</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="extruder" id="id-nav-extruder-line-1">
+                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="46_line_extruder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Estrusore</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="tray-feeder" id="id-nav-tray-feeder-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="47_line_tray_feeder.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Avanzamento Telai</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="destacker" id="id-nav-destacker-line-1">
+                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="48_line_destacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Deimpilatore</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="spreader" id="id-nav-spreader-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="49_line_spreader.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Stenditrice</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="nests_lasagna" id="id-nav-nests_lasagna-line-1">
+                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="50_line_nests_lasagna.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Nidi Lasagna</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="predryer" id="id-nav-predryer-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="51_line_predryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Trabatto</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="omnidryer" id="id-nav-omnidryer-line-1">
+                                            <a class="align-items-center d-flex nav-link" aria-current="page" href="52_line_omnidryer.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Omnidryer</span>&nbsp;</a> 
+                                        </li>                                         
+                                        <li class="nav-item" data-pg-name="stacker" id="id-nav-stacker-line-1"> <a class="align-items-center d-flex nav-link" aria-current="page" href="53_line_stacker.html"><span class="material-icons-outlined">group_work</span><span class="ms-3">Impilatore</span>&nbsp;</a> 
                                         </li>                                         
                                     </div>                                     
                                 </div>                                 
@@ -187,115 +186,12 @@
                 </nav>                 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Dashboard Estrusore</h1> 
+                        <h1 class="h2">Dashboard Nidi Lasagna</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
                         </div>                         
-                    </div>                     
-                    <div class="gy-3 mb-5 row"> 
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Dati Impasto</h6> 
-                                    <div class="gy-4 mt-1 row row-cols-1"> 
-                                        <div> 
-                                            <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-primary">grain</span> 
-                                                <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Impasto_Totale">350 kg/h</h4> <span class="ms-3 text-secondary">Pressione Estrusore</span> 
-                                                </div>                                                 
-                                            </div>                                             
-                                            <div class="progress"> 
-                                                <div class="bg-primary progress-bar" role="progressbar" style="width:35%" aria-valuemin="0" aria-valuemax="200" aria-valuenow="35" id="id-progress-impasto-totale"></div>                                                 
-                                            </div>                                             
-                                        </div>                                         
-                                        <div> 
-                                            <div class="d-inline-flex"> <span class="align-self-center material-icons-outlined md-48 text-danger">device_thermostat</span> 
-                                                <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3" propertyname="PV_Portata_Sfarinati">350 kg/h</h4> <span class="ms-3 text-secondary">Temperatura Cilindro</span> 
-                                                </div>                                                 
-                                            </div>                                             
-                                            <div class="progress progress-height"> 
-                                                <div class="bg-danger progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="id-progress-sfarinati"></div>                                                 
-                                            </div>                                             
-                                        </div>                                         
-                                        <div> 
-                                            <div class="d-inline-flex"><span class="align-self-center material-icons-outlined md-48 text-danger">device_thermostat</span> 
-                                                <div class="d-flex flex-column"> 
-                                                    <h4 class="mb-0 ms-3" propertyname="Impasto_PV_Dosatore_Acqua">350 kg/h</h4><span class="ms-3 text-secondary">Temperatura Testata</span> 
-                                                </div>                                                 
-                                            </div>                                             
-                                            <div class="progress progress-height"> 
-                                                <div class="bg-danger progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="id-progress-acqua"></div>                                                 
-                                            </div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Dettaglio impasto</h6> 
-                                    <div class="h-100 mh-100 pg-empty-placeholder" id="id-div-pie-chart"></div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="w-100"></div>                         
-                        <div class="col-md h-100"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
-                                    <div class="pg-empty-placeholder" id="IDLegendActualProduzione"></div>                                     
-                                    <div class="pg-empty-placeholder" id="IDTrendActualProduction" style="height: 50vh;"></div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>                     
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Storico Estrusore</h1> 
-                        <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"> 
-</div>                             
-                        </div>                         
-                    </div>                     
-                    <div class="mb-5 row"> 
-                        <div class="col-lg-4"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
-                                    <div class="pb-3 pt-3 text-muted" data-pg-name="date"> 
-                                        <input type="date" placeholder="gg/mm/aaaa" class="bg-gradient bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeStart"/> 
-                                    </div>                                     
-                                    <div class="pb-3 pt-3" data-pg-name="date"> 
-                                        <input type="date" placeholder="gg/mm/aaaa" class="bg-transparent border-0 border-2 border-bottom text-muted w-100" id="IDTimeEnd"/> 
-                                    </div>                                     
-                                    <div> 
-                                        <table id="IDHistoryTable" class="table table-hover table-responsive"> 
-                                            <thead> 
-                                                <tr> 
-                                                    <th class="fw-light text-muted">Inizio Produzione</th> 
-                                                    <th class="fw-light text-muted">Fine Produzione</th> 
-                                                    <th class="fw-light text-muted">Nome Ricetta</th> 
-                                                    <th class="fw-light text-muted">Durata</th> 
-                                                </tr>                                                 
-                                            </thead>                                             
-                                            <tbody class="h-50 pg-empty-placeholder" id="IDHistoryTableBody"></tbody>                                             
-                                        </table>                                         
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md h-100"> 
-                            <div class="card"> 
-                                <div class="card-body"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Produzione Attuale</h6> 
-                                    <div class="pg-empty-placeholder" id="IDLegendHistoryProduction"></div>                                     
-                                    <div class="pg-empty-placeholder" id="IDTrendHistoryProduction" style="height: 50vh;"></div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>
+                    </div>                                                                                    
                 </main>                 
             </div>             
         </div>         
