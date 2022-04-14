@@ -158,6 +158,13 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	// AMCHART - Cursor
 	chart.cursor = new am4charts.XYCursor();
 
+	chart.paddingTop = 0;
+	chart.paddingRight = 0;
+	chart.paddingBottom = 0;
+	chart.paddingLeft = 0;
+	
+	console.log(chart)
+
 	// AMCHART - Legend
 	chart.legend = new am4charts.Legend();
 	chart.legend.disable = true;
@@ -271,8 +278,13 @@ function createPieSeries(chart, seriesName, categoryName, unitName, totalUnit){
 	let label = chart.seriesContainer.createChild(am4core.Label);
 	label.horizontalCenter = "middle";
 	label.verticalCenter = "middle";
+
 	label.adapter.add("text", function(text, target){
-		return "[font-size:18px]total[/]:\n[bold font-size:30px]" + pieSeries.dataItem.values.value.sum + " " + totalUnit + "[/]";
+		let value = pieSeries.dataItem.values.value.sum
+		try{
+			value = pieSeries.dataItem.values.value.sum.toFixed(2)
+		}catch(e){}
+		return "[font-size:18px]total[/]:\n[bold font-size:30px]" + value + " " + totalUnit + "[/]";
 	})
 }
 // Inserisce i dati nel grafico
