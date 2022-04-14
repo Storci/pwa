@@ -60,6 +60,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 	chart.colors.list = colorChart[typeColor]
 	// Abilita il cursore nel grafico
 	chart.cursor = new am4charts.XYCursor()
+	chart.cursor.behavior = "panX";
 	// Abilita scrollbar
 	//chart.scrollbarX = new am4core.Scrollbar()
 	// Abilita la legenda nel grafico
@@ -154,16 +155,14 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	let chart = am4core.create(IDdivChart, am4charts.XYChart);
 
 	chart.colors.list = colorChart[typeColor]
-
 	// AMCHART - Cursor
 	chart.cursor = new am4charts.XYCursor();
+	chart.cursor.behavior = "none";
 
 	chart.paddingTop = 0;
 	chart.paddingRight = 0;
 	chart.paddingBottom = 0;
 	chart.paddingLeft = 0;
-	
-	console.log(chart)
 
 	// AMCHART - Legend
 	chart.legend = new am4charts.Legend();
@@ -176,6 +175,7 @@ function createXYChartNoLegend(IDdivChart, typeColor){
 	let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
 	dateAxis.renderer.labels.template.disabled = true;
 	dateAxis.renderer.grid.template.disabled = true;
+
 	// AMCHART - Configure axis tooltip
 	let dateAxisTooltip = dateAxis.tooltip;
 	dateAxisTooltip.background.fill = am4core.color("#698ca7");
