@@ -27,7 +27,7 @@
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
         <!-- CUSTOM SCRIPT -->         
         <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script src="./assets/js/52_line_omnidryer.js" type="module"></script>         
+        <script src="./assets/js/54_line_pasta_instant.js" type="module"></script>         
         <!-- The core Firebase JS SDK is always required and must be listed first -->         
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
         <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
@@ -188,13 +188,13 @@
                 </nav>                 
                 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4" id="id-column-master" data-pgc-field="id-column-master"> 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Dashboard Omnidryer</h1> 
+                        <h1 class="h2">Dashboard Pasta Instant</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
                         </div>                         
                     </div>                     
-                    <div class="gy-3 mb-5 row"> 
+                    <div class="gy-3 mb-5 row" propertyname="Omnidryer_Tunnel_SP_Temperatura_1"> 
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
@@ -210,10 +210,10 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Canne nel tunnel</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Tempo cottura</h6> 
                                     <div class="align-items-end mb-0 row row-cols-2"> 
                                         <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Ricetta_Canne_Dentro_Tunnel" decimals="0">0.00</span><span class="ms-2"></span></h4> 
+                                            <h4 class="mb-0"><span propertyname="Pasta_Instant_Ricetta_Tempo_Cottura" decimals="0">0.00</span><span class="ms-2">min</span></h4> 
                                         </div>                                         
                                         <div class="col-md h-25"> 
                                             <div class="pg-empty-placeholder" id="IDDivChart1" style="max-height: 50px;"></div>                                             
@@ -225,30 +225,15 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Canne prodotte</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Temperatura camera</h6> 
                                     <div class="align-items-end mb-0 row row-cols-2"> 
                                         <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Ricetta_Canne_Prodotte" decimals="0">0.00</span><span class="ms-2"></span></h4> 
+                                            <h4 class="mb-0"><span propertyname="Pasta_Instant_PV_Temperatura_Camera" decimals="0">0.00</span><span class="ms-2">°C</span></h4> 
                                         </div>                                         
                                         <div class="col-md h-25"> 
                                             <div class="pg-empty-placeholder" id="IDDivChart2" style="max-height: 50px;"></div>                                             
                                         </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 1 - Temperatura</h6> 
-                                    <div class="align-items-end mb-0 row row-cols-2"> 
-                                        <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Temperatura_1" decimals="2">0.00</span><span class="ms-2">°C</span></h4> 
-                                        </div>                                         
-                                        <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart3" style="max-height: 50px;"></div>                                             
-                                        </div>                                         
-                                    </div>                                     
+                                    </div>
                                     <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Temperatura_1" decimals="2">0.00</span><span class="ms-2">°C</span></h6> 
                                 </div>                                 
                             </div>                             
@@ -256,80 +241,16 @@
                         <div class="col-md-4"> 
                             <div class="card"> 
                                 <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 2 - Temperatura</h6> 
+                                    <h6 class="card-subtitle mb-2 text-muted">Flusso vapore</h6> 
                                     <div class="align-items-end mb-0 row row-cols-2"> 
                                         <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Temperatura_2" decimals="2">0.00</span><span class="ms-2">°C</span></h4> 
+                                            <h4 class="mb-0"><span propertyname="Pasta_Instant_PV_Portata_Vapore" decimals="2">0.00</span><span class="ms-2">m3/h</span></h4> 
                                         </div>                                         
                                         <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart4" style="max-height: 50px;"></div>                                             
+                                            <div class="pg-empty-placeholder" id="IDDivChart3" style="max-height: 50px;"></div>                                             
                                         </div>                                         
                                     </div>                                     
-                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Temperatura_2" decimals="2">0.00</span><span class="ms-2">°C</span></h6> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 3 - Temperatura</h6> 
-                                    <div class="align-items-end mb-0 row row-cols-2"> 
-                                        <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Temperatura_3" decimals="2">0.00</span><span class="ms-2">°C</span></h4> 
-                                        </div>                                         
-                                        <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart5" style="max-height: 50px;"></div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Temperatura_3" decimals="2">0.00</span><span class="ms-2">°C</span></h6> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 1 - Umidità</h6> 
-                                    <div class="align-items-end mb-0 row row-cols-2"> 
-                                        <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Umidità_1" decimals="2">0.00</span><span class="ms-2">%</span></h4> 
-                                        </div>                                         
-                                        <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart6" style="max-height: 50px;"></div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Umidità_1" decimals="2">0.00</span><span class="ms-2">%</span></h6> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 2 - Umidità</h6> 
-                                    <div class="align-items-end mb-0 row row-cols-2"> 
-                                        <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Umidità_1" decimals="2">0.00</span><span class="ms-2">%</span></h4> 
-                                        </div>                                         
-                                        <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart7" style="max-height: 50px;"></div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Umidità_2" decimals="2">0.00</span><span class="ms-2">%</span></h6> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                        <div class="col-md-4"> 
-                            <div class="card"> 
-                                <div class="card-body pb-1"> 
-                                    <h6 class="card-subtitle mb-2 text-muted">Stage 2 - Umidità</h6> 
-                                    <div class="align-items-end mb-0 row row-cols-2"> 
-                                        <div class="align-items-end col-md-auto d-flex h-25"> 
-                                            <h4 class="mb-0"><span propertyname="Omnidryer_Tunnel_PV_Umidità_3" decimals="2">0.00</span><span class="ms-2">%</span></h4> 
-                                        </div>                                         
-                                        <div class="col-md h-25"> 
-                                            <div class="pg-empty-placeholder" id="IDDivChart8" style="max-height: 50px;"></div>                                             
-                                        </div>                                         
-                                    </div>                                     
-                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Umidità_3" decimals="2">0.00</span><span class="ms-2">%</span></h6> 
+                                    <h6 class="card-subtitle mt-3 text-muted"><span>set point: </span><span class="ms-2" propertyname="Omnidryer_Tunnel_SP_Temperatura_1" decimals="2">0.00</span><span class="ms-2">m3/h</span></h6> 
                                 </div>                                 
                             </div>                             
                         </div>                         
@@ -345,7 +266,7 @@
                         </div>                         
                     </div>                     
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h1 class="h2">Storico Omnidryer</h1> 
+                        <h1 class="h2">Storico Pasta Instant</h1> 
                         <div class="btn-toolbar mb-2 mb-md-0"> 
                             <div class="btn-group me-2"> 
 </div>                             
