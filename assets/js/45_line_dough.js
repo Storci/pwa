@@ -83,8 +83,6 @@ setCardsValue(entityName, chartPieSettingsProduction)
 // Funzioni cicliche
 setInterval(setCardsValue, 10000, entityName, chartPieSettingsProduction);	// ogni 10 sec
 
-
-console.log(chartPieSettingsProduction)
 // Funzione che recupera i dati da thingworx e li visualizza nelle card della pagina.
 // Prerequisiti: le label che si vogliono popolare con i valori da thingworx devono avere
 // la seguente classe '.thingworx-property-value'.
