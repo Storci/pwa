@@ -1,37 +1,40 @@
-<!doctype html> 
-<html lang="en"> 
-    <head> 
-        <meta charset="utf-8"/> 
-        <meta name="viewport" content="width=device-width, initial-scale=1"/> 
-        <meta name="description" content=""/> 
-        <link rel="icon" href="./assets/img/icon_round_storci.svg" type="image/x-icon"/> 
-        <title>Lista Clienti</title>         
-        <!-- GOOGLE ICON -->         
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/> 
-        <!-- JQUERY -->         
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>         
-        <!-- Bootstrap core -->         
-        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/> 
-        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>         
-        <!-- Custom styles for this template -->         
-        <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->         
-        <link href="assets/css/dashboard.css" rel="stylesheet"/> 
-        <link href="assets/css/storci-styles.css" rel="stylesheet"/> 
-        <!-- AM4CORE CHART -->         
-        <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>         
-        <script defer src="https://cdn.amcharts.com/lib/4/charts.js"></script>         
-        <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>         
-        <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>         
-        <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
-        <!-- CUSTOM SCRIPT -->         
-        <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script defer src="./assets/js/01_Customers.js" type="module"></script>         
-        <!-- The core Firebase JS SDK is always required and must be listed first -->         
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>         
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>         
-        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>         
-        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>         
-        <script> 
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <link rel="icon" href="./assets/img/icon_round_storci.svg" type="image/x-icon"/>
+        <title>Lista Clienti</title>
+        <!-- GOOGLE ICON -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet"/>
+        <!-- JQUERY -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- Bootstrap core -->
+        <link href="bootstrap_theme/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <!-- Custom styles for this template -->
+        <!-- <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
+        <link href="assets/css/dashboard.css" rel="stylesheet"/>
+        <link href="assets/css/storci-styles.css" rel="stylesheet"/>
+        <!-- AM4CORE CHART -->
+        <script defer src="https://cdn.amcharts.com/lib/4/core.js"></script>
+        <script defer src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+        <script defer src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+        <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>
+        <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>
+        <!-- CUSTOM SCRIPT -->
+        <script src="./assets/js/sidebar.js" type="module"></script>
+        <script defer src="./assets/js/01_Customers.js" type="module"></script>
+        <!-- The core Firebase JS SDK is always required and must be listed first -->
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js" type="module"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js" type="module"></script>
+        <script src="./assets/js/pageNotification.js" type="module"></script>
+        <script>
         var firebaseConfig = {
             apiKey: "AIzaSyB6L_2pDhDz1RXHA5ZA8g9hsU9e4EOHGvU",
             authDomain: "storci-thingworx-ui.firebaseapp.com",
@@ -44,60 +47,60 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
-        </script>         
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/> 
-    </head>     
-    <body> 
-        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">STORCI</a> 
-            <button class="collapsed d-md-none navbar-toggler position-absolute" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> 
-            </button>             
-        </header>         
-        <div class="container-fluid"> 
-            <div class="row"> 
-                <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar"> 
-                    <div class="position-sticky pt-3"> 
-                        <ul class="nav flex-column"> 
-                            <li class="nav-item"> <a class="active align-items-center d-flex nav-link" aria-current="page" href="#"> <span class="material-icons-outlined">group</span><span class="ms-3">Lista Clienti</span> </a> 
-                            </li>                             
-                            <li class="nav-item"> 
-</li>                             
-                        </ul>                         
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"> <span>reports</span> <span class="material-icons-outlined">summarize</span></h6> 
-                        <ul class="nav flex-column mb-2"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#"> <span class="material-icons-outlined">notifications</span> <span class="ms-3">Allarmi</span> </a> 
-                            </li>                             
+        </script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
+    </head>
+    <body>
+        <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow"> <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">STORCI</a>
+            <button class="collapsed d-md-none navbar-toggler position-absolute" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+            </button>
+        </header>
+        <div class="container-fluid">
+            <div class="row">
+                <nav id="sidebarMenu" class="bg-light col-lg-2 col-md-3 collapse d-md-block sidebar">
+                    <div class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item"> <a class="active align-items-center d-flex nav-link" aria-current="page" href="#"> <span class="material-icons-outlined">group</span><span class="ms-3">Lista Clienti</span> </a>
+                            </li>
                             <li class="nav-item">
-                                <a class="align-items-center d-flex nav-link" href="#"> <span class="material-icons-outlined">history</span> <span class="ms-3">Storico Allarmi</span> </a> 
-                            </li>                             
-                        </ul>                         
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">&#xe7fd</span> </h6> 
-                        <ul class="flex-column mb-2 nav"> 
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a> 
-                            </li>                             
-                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a> 
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                </nav>                 
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"> 
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"> 
-                        <h2>Lista Clienti Connessi</h2> 
-                        <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"> 
-</div>                             
-                        </div>                         
-                    </div>                     
-                    <div class="gy-3  pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowConnected" data-pg-name="row-customer-connected" title="Clienti Connessi"></div>                     
-                    <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-between mb-3 mt-5 pb-2 pt-3"> 
-                        <h2>Lista Clienti Disconnessi</h2> 
-                        <div class="btn-toolbar mb-2 mb-md-0"> 
-                            <div class="btn-group me-2"> 
-</div>                             
-                        </div>                         
-                    </div>                     
-                    <div class="gy-3 pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowDisconnected" data-pg-name="row-customer-disconnected" title="Clienti Disconnessi"></div>                     
-                </main>                 
-            </div>             
-        </div>                  
-    </body>     
+</li>
+                        </ul>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"> <span>reports</span> <span class="material-icons-outlined">summarize</span></h6>
+                        <ul class="nav flex-column mb-2">
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#"> <span class="material-icons-outlined">notifications</span> <span class="ms-3">Allarmi</span> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="align-items-center d-flex nav-link" href="#"> <span class="material-icons-outlined">history</span> <span class="ms-3">Storico Allarmi</span> </a>
+                            </li>
+                        </ul>
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"> <span id="id-username">Utente</span><span class="material-icons-outlined md-24">&#xe7fd</span> </h6>
+                        <ul class="flex-column mb-2 nav">
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="90_login.html" id="id-user-login"> <span class="material-icons-outlined">login</span> <span class="ms-3">Login</span> </a>
+                            </li>
+                            <li class="nav-item"> <a class="align-items-center d-flex nav-link" href="#" id="id-user-logout"><span class="material-icons-outlined">logout</span><span class="ms-3">Logout</span> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h2>Lista Clienti Connessi</h2>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+</div>
+                        </div>
+                    </div>
+                    <div class="gy-3  pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowConnected" data-pg-name="row-customer-connected" title="Clienti Connessi"></div>
+                    <div class="align-items-center border-bottom d-flex flex-md-nowrap flex-wrap justify-content-between mb-3 mt-5 pb-2 pt-3">
+                        <h2>Lista Clienti Disconnessi</h2>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                            <div class="btn-group me-2">
+</div>
+                        </div>
+                    </div>
+                    <div class="gy-3 pg-empty-placeholder row row-cols-1 row-cols-lg-4 row-cols-md-2 row-cols-sm-1" id="IDRowDisconnected" data-pg-name="row-customer-disconnected" title="Clienti Disconnessi"></div>
+                </main>
+            </div>
+        </div>
+    </body>
 </html>

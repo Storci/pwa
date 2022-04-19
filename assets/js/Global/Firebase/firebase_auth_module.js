@@ -63,7 +63,7 @@ function signOut(){
 	firebase.auth().signOut().then(() => {
 		// Sign-out successful.
 		console.info("Utente disconnesso");
-			window.location.href = './90_login.html'
+			///window.location.href = './90_signIn.html'
 	}).catch((error) => {
 		// An error happened.
 		console.error(error);
@@ -84,7 +84,7 @@ function onAuthStateChanged_2(){
   	if(!user){
 			let pageURL = window.location.href
 			localStorage.setItem('urlPage', pageURL)
-			window.location.href = './90.signIn.html'
+			window.location.href = './90_signIn.html'
 		}
 		localStorage.setItem('user', user)
 	})
