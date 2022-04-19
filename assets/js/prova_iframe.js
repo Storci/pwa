@@ -8,6 +8,7 @@ frame.addEventListener('load', function() {
 });
 */
 
+/*
 $("#iframe_id").load(function() {
     $(this).height( $(this).contents().find("body").height() );
 });
@@ -20,4 +21,11 @@ function resize(){
 
   console.log(frame.contentDocument.body.scrollHeight)
   col.style.height = frame.contentDocument.body.scrollHeight + 'px';
+}
+*/
+//setInterval(resize, 5000)
+function resize(){
+  let height = document.getElementById('iframe_id').contentWindow.document.body.scrollHeight
+  console.log(height)
+  document.getElementById('divhead').style.height = height + 'px'
 }
