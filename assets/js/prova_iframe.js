@@ -24,8 +24,3 @@ function resize(){
 }
 */
 //setInterval(resize, 5000)
-function resize(){
-  let height = document.getElementById('iframe_id').contentWindow.document.body.scrollHeight
-  console.log(height)
-  document.getElementById('divhead').style.height = height + 'px'
-}

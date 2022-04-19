@@ -172,19 +172,15 @@ function refreshStatus(entityName){
   .catch(err => console.error(err))
 }
 
-// funzione per la Push notification
+if(localStorage.getItem('pageName')){
+  $('#iframe_id').attr('src', localStorage.getItem('pageName'))
+}
 
-/*let btn_notification=document.getElementById("btn-notify")
-fbmessaging.btn_notification.addEventListener('click',() =>{
-  Notification.requestPermission().
-  then(permission=>{
-    console.log(permission)
-    if(permission == "granted"){
-         messaging.getToken({vapidKey: "BHAlALJTVW9HMVgmx-jHj0MO6CVh--8I4GHnbtlwIFwJojC7vSEAja10smm93Cx_V0DSVcRlEZBUdf6lxBi0YUc"})
-         .then(currentToken=>{
-           console.log(currentToken)
-         })
-    }
-  })
-})*/
-
+$('a').on('click', function() {
+  console.log(this.href)
+  $('#iframe_id').attr('src', this.href)
+  localStorage.setItem('pageName', this.href)
+  $('a').removeClass('active')
+  $(this).addClass('active')
+  return false
+})
