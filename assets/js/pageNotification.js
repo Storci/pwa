@@ -31,7 +31,7 @@ const pushBtn = document.getElementById('btn-notify')
   })
   .then(function(token) {
     console.log(token);
-    
+
   })
   .catch(function(err) {
     console.log("No permission to send push.");
@@ -58,7 +58,7 @@ const pushBtn = document.getElementById('btn-notify')
 
 
 
-/* 
+/*
 
 
 "use strict";
@@ -130,5 +130,4 @@ function displayNotification() {
  }
 
 
-*/ 
-
+*/
