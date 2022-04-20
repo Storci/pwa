@@ -1,4 +1,4 @@
-import * as am from "../amchart/amchart_functions.js"
+//import * as am from "../amchart/amchart_functions.js"
 
 let baseUrl   		 = 'https://storciiot.storci.com:8445/Thingworx/'
 let appKey 				 = 'cdd83674-f63f-4535-9aa2-33ac5b70b52c'
@@ -74,6 +74,23 @@ function service_90_sidebar(entityName){
 	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
 	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
 }
+
+/*
+	service_98_setFirebaseToken
+	l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
+	recupera i dati generali di tutte le macchine installate dal cliente.
+	i dati recuperati sono:
+		- centityName
+*/
+function service_98_setFirebaseToken(username, token){
+	// Definisce l'url da richiamare per la REST API
+	settings.url  = baseUrl + bootstrapThing + 'service_98_setFirebaseToken'
+	settings.data = JSON.stringify({username:username, firebaseToken:token})
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}
+
+
 
 
 
@@ -645,6 +662,8 @@ async function getDryerTimeRange(entityName){
   // Ritorna un json object con la data di inizio e fine
 	return {'start':timeStart, 'end':timeEnd}
 }
+
+/*
 // Recupera la lista delle produzioni effettuate
 // In base al range time impostato.
 function getDryerHistoryProduction(idTable, entityName, timeStart, timeEnd, chart, query){
@@ -700,7 +719,7 @@ function getDryerHistoryProduction(idTable, entityName, timeStart, timeEnd, char
 	})
 	.catch(error => console.error(error))
 }
-
+*/
 
 // Viene effettuata una query verso thingworx per recuperare
 // il timestamp di inizio produzione. In questo modo i grafici
@@ -740,6 +759,9 @@ async function getLineTimeRange(entityName){
   // Ritorna un json object con la data di inizio e fine
 	return {'start':timeStart, 'end':timeEnd}
 }
+
+
+/*
 // Recupera la lista delle produzioni effettuate
 // In base al range time impostato.
 function getLineHistoryProduction(idTable, entityName, timeStart, timeEnd, chart, query){
@@ -795,6 +817,7 @@ function getLineHistoryProduction(idTable, entityName, timeStart, timeEnd, chart
 	})
 	.catch(error => console.error(error))
 }
+*/
 
 export{
 	service_01_getDryersGeneralInfo,
@@ -822,7 +845,8 @@ export{
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,
 	getDryerTimeRange,
-	getDryerHistoryProduction,
+	//getDryerHistoryProduction,
 	getLineTimeRange,
-	getLineHistoryProduction
+	//getLineHistoryProduction,
+	service_98_setFirebaseToken
 }
