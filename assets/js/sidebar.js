@@ -2,16 +2,29 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+// Recupera l'entity name della thing
+let entityName = urlParams.get('entityName')
+let customer = entityName.split(/\./g)
+customer = customer[2].replace(/_/g, ' ')
+console.log(customer)
+$('#id-customer-name').text(customer)
+
+
 // recupera il nome dell'entity (selezionata, se utente storci)
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
+/*
 let entityName = localStorage.getItem('global_entityName')
 let customer = localStorage.getItem('global_selected_customer')
 customer = customer.replace(/_/g, ' ')
 $('#id-customer-name').text(customer)
+*/
 if(localStorage.getItem('global_customer').includes("Storci")){
   $('#id-nav-customers-list').removeClass('d-none')
 }
+
 // Recupera l'url della pagina visualizzata
 // Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
 // recupera il nome della pagina
@@ -63,10 +76,12 @@ tw.service_90_sidebar(entityName)
           $(idCollapsePanel).addClass('show')
         }
 
+        
         // Controlla nello specifico quale pagina è in visualizzazione
         // se la pagina della dashboard o dello storico
         if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
         if(pageName == href_history)  { $(nav_history_link).addClass('active') }
+
 
         // Visualizza le celle presenti dal cliente.
         // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-none
@@ -144,6 +159,7 @@ tw.service_90_sidebar(entityName)
   $('body').removeClass('d-none')
 })
   .catch(err => console.error(err))
+
 
 refreshStatus(entityName)
 // imposta il servizio refreshStatus in loop
