@@ -12,12 +12,7 @@ $('#id-customer-name').text(customer)
 if(localStorage.getItem('global_customer').includes("Storci")){
   $('#id-nav-customers-list').removeClass('d-none')
 }
-// Recupera l'url della pagina visualizzata
-// Effettua uno split dell'url recuperato dividendo la stringa tramite lo /
-// recupera il nome della pagina
-let pageURL = window.location.href
-    pageURL = pageURL.split('\/')
-let pageName = pageURL[pageURL.length-1]
+
 
 // recupera il nome dell'utente loggato.
 // il nome viene visualizzato nella sidebar.
@@ -32,125 +27,21 @@ fb.onAuthStateChanged()
 // alla pressione del tasto, l'utente viene reindirizzato alla pagina di login
 $('#id-user-logout').click(() => { fb.signOut() })
 
-// Recupera i nomi delle macchine installate dal cliente.
-// vengono recuperate sia le celle che le linee.
-tw.service_90_sidebar(entityName)
-  .then(res => {
-    // ****************************
-    // ********** DRYERS **********
-    // ****************************
-    try{
-      // Controlla se sono presenti delle celle
-      if(JSON.stringify(res.dryers) !== '[]'){
-        // pagine
-        let href_dashboard         = '30_dryers_general_dashboard.html'
-        let href_history           = '31_dryers_history.html'
-        // id
-        let idAccordion            = '#id-accordion-dryers'
-        let idBtnAccordion         = '#id-btn-accordion-dryers'
-        let idCollapsePanel        = '#id-collapse-panel-dryers'
-        // link
-        let nav_dashboard_link     = '#id-nav-dashboard-dryer a'
-        let nav_history_link       = '#id-nav-history-dryer a'
+createSidebar()
 
-        // Visualizza il menu delle celle
-        $(idAccordion).removeClass('d-none')
-        // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
-        // se la pagina corrisponde, allora viene aperto il menù delle celle.
-        if(pageName.includes('dryer-')){
-          $(idBtnAccordion).attr('aria-expanded', 'true')
-          $(idBtnAccordion).removeClass('collapsed')
-          $(idCollapsePanel).addClass('show')
-        }
-
-        // Controlla nello specifico quale pagina è in visualizzazione
-        // se la pagina della dashboard o dello storico
-        if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }
-        if(pageName == href_history)  { $(nav_history_link).addClass('active') }
-
-        // Visualizza le celle presenti dal cliente.
-        // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-none
-        // Modifica l'href da richiamare quando si preme il pulsante del menu
-        // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
-        // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
-        for(let i=1; i<=res.dryers.length; i++){
-          // genera il percorso da aprire quando viene premuto il pulsante relativo ad una cella
-          // il percorso punta alla pagina 32_dryer_dashboard.html, con l'aggiunta del parametro entityName
-          let href         = '32_dryer_dashboard.html?entityName=' + res.dryers[i-1].entityName
-          let id_nav_dryer = '#id-nav-dryer-' + i
-          let nav_link     = id_nav_dryer + ' a'
-          let span_status  = id_nav_dryer + ' div a :last-child'
-
-          // effettua modifiche agli elementi sottostanti
-          $(span_status).text(res.dryers[i-1].status)
-          $(id_nav_dryer).removeClass('d-none')
-          $(nav_link).attr('href', href)
-
-          // imposta il link come attivo se la pagina in visualizzazione corrisponde ad una cella
-          if(pageName == href){ $(nav_link).addClass('active') }
-        }
-      }
-    }catch(e){ console.error(e) }
-
-    // ***************************
-    // ********** LINES **********
-    // ***************************
-    try{
-      // Controlla se sono presenti delle celle
-      if(JSON.stringify(res.lines) !== '[]'){
-        // Visualizza le celle presenti dal cliente.
-        // Nella sidebar sono presenti 16 celle, nascoste tramite la classe d-nome
-        // Modifica l'href da richiamare quando si preme il pulsante del menu
-        // ref deve passare alla pagina 30_Dryer_Dashboard.html l'entityName della cella
-        // In questo modo la pagina riesce a recuperare i dati dalla cella corretta
-        for(let i=1; i<=res.lines.length; i++){
-          // definisce gli id dell'accordion della linea
-          // il ciclo for permette di selezionare il menù corretto in base alla linea in scansione
-          // All'interno del div idCollapsePanel sono contenuti tutti i link alle pagine delle linea
-          let idAccordion           = '#id-accordion-line-' + i
-          let idBtnAccordion        = '#id-btn-accordion-line-' + i
-          let idCollapsePanel       = '#id-collapse-panel-line-' + i
-
-          // Effettua un ciclo per ogni elemento 'li' contenuto nel div idCollapsePanel
-          $(idCollapsePanel).children('li').each((j, elem) => {
-            // Recupera href impostato nell'elemento a
-            let href = $(elem).children('a').attr('href')
-            // Aggiunge il parametro da passare alla pagina
-            href += '?entityName=' + res.lines[i-1].entityName
-            // Imposta l'elememento con il nuovo href
-            $(elem).children('a').attr('href', href)
-            // Aggiunge la classe active se ci troviamo in una pagina della linea
-            if(pageName == href){ $(elem).children('a').addClass('active') }
-          })
-
-          // id link
-          let id_nav_dashboard_line = '#id-nav-dashboard-line-' + i
-          let span_status           = id_nav_dashboard_line + 'div a :last-child'
-          $(span_status).text(res.lines[i-1].status)
-
-          // Visualizza il menu delle celle
-          $(idAccordion).removeClass('d-none')
-          // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
-          // se la pagina corrisponde, allora viene aperto il menù delle celle.
-          if(pageName.includes('line')){
-            $(idBtnAccordion).attr('aria-expanded', 'true')
-            $(idBtnAccordion).removeClass('collapsed')
-            $(idCollapsePanel).addClass('show')
-          }
-        }
-      }
-    }catch(e){ console.error(e) }
-
-  $('body').removeClass('d-none')
+window.addEventListener("storage", event => {
+  if(event.key == "global_entityName"){
+    createSidebar()
+  }
 })
-  .catch(err => console.error(err))
 
-refreshStatus(entityName)
+refreshStatus()
 // imposta il servizio refreshStatus in loop
-setInterval(refreshStatus, 10000, entityName)
+setInterval(refreshStatus, 10000)
 // il servizio recupera gli stati delle macchine installate.
 // gli stati sono visualizzati nella sidebar a fianco di ogni nome.
-function refreshStatus(entityName){
+function refreshStatus(){
+  let entityName = localStorage.getItem('global_entityName')
   // Recupera i dati generali delle celle installate dal cliente
   tw.service_90_sidebar(entityName)
   .then(res => {
