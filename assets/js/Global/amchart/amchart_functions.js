@@ -134,7 +134,7 @@ function createXYChart(IDdivChart, IDdivLegend='', typeColor, numYAxis=1, YAxisU
 
 function createPieChart(IDdivChart){
 	// Themes begin
-	am4core.useTheme(am4themes_animated)
+	//am4core.useTheme(am4themes_animated)
 	// Themes end
 
 	// Create chart instance
