@@ -99,9 +99,7 @@ function createCard(customerList){
 			//localStorage.setItem('global_selected_customer', customerName)
 			localStorage.setItem('global_entityName', el.name)
 			// Carica la pagina.
-			//window.location.href = "./02_Dashboard.html?entityName=" + el.name
-      let href = "./02_Dashboard.html?entityName=" + el.name
-      $('#iframe_id', parent.document).attr('src', href)
+			window.location.href = "./02_Dashboard.html?entityName=" + el.name
 		}
 	})
 }
