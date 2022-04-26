@@ -2,25 +2,16 @@
 import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 
-const queryString = window.location.search
-const urlParams = new URLSearchParams(queryString)
-// Recupera l'entity name della thing
-let entityName = urlParams.get('entityName')
-let customer = entityName.split(/\./g)
-customer = customer[2].replace(/_/g, ' ')
-console.log(customer)
-$('#id-customer-name').text(customer)
-
-
 // recupera il nome dell'entity (selezionata, se utente storci)
 // il nome dell'entity permette di recuperare le macchine presenti
 // per un determinato cliente e visualizzarle nella sidebar.
-/*
+
 let entityName = localStorage.getItem('global_entityName')
-let customer = localStorage.getItem('global_selected_customer')
-customer = customer.replace(/_/g, ' ')
-$('#id-customer-name').text(customer)
-*/
+try{
+  let customer = localStorage.getItem('global_selected_customer')
+  customer = customer.replace(/_/g, ' ')
+  $('#id-customer-name').text(customer)
+}catch(e){}
 if(localStorage.getItem('global_customer').includes("Storci")){
   $('#id-nav-customers-list').removeClass('d-none')
 }
@@ -70,13 +61,13 @@ tw.service_90_sidebar(entityName)
         $(idAccordion).removeClass('d-none')
         // controlla che la pagina in visualizzazione sia una pagina delle celle (30_*, 31_*, 32_*)
         // se la pagina corrisponde, allora viene aperto il menù delle celle.
-        if(pageName.includes('dryer-')){
+
+        if(pageName.includes('_dryer')){
           $(idBtnAccordion).attr('aria-expanded', 'true')
           $(idBtnAccordion).removeClass('collapsed')
           $(idCollapsePanel).addClass('show')
         }
 
-        
         // Controlla nello specifico quale pagina è in visualizzazione
         // se la pagina della dashboard o dello storico
         if(pageName == href_dashboard){ $(nav_dashboard_link).addClass('active') }

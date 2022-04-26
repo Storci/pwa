@@ -3,6 +3,12 @@ import * as tw from "./Global/Thingworx/thingworx_api_module.js"
 import * as fb from "./Global/Firebase/firebase_auth_module.js"
 import * as lang from "./Global/Common/Translation.js"
 
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+// Recupera l'entity name della thing
+let entityName = urlParams.get('entityName')
+let selectedCustomer = localStorage.getItem("global_selected_customer")
+
 // definisce l'url di base della pagina attuale (in questo caso della pagina index.html).
 // il risultato è http(s)://xxx.xxx.xxx.xxx:xxxx
 // baseURL verrà utilizzato come base per il cambio pagina.
@@ -14,9 +20,7 @@ let pageURL = window.location.href
 // Nel caso non fosse loggato richiama la pagina di login
 //fb.onAuthStateChanged_2(baseURL, pageURL)
 // Recupera dei dati dalle local storage
-let selectedCustomer = localStorage.getItem("global_selected_customer")
-let selectedLine 		 = localStorage.getItem("global_selected_line")
-let entityName			 = localStorage.getItem('global_selected_line_entityName')
+
 // Imposta il nome del cliente nella breadcrumb
 // Vengono sostituiti tutti gli underscore presenti nel nome
 //$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));

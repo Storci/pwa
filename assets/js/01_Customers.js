@@ -96,7 +96,7 @@ function createCard(customerList){
 		// Abilita onclick sulla card
 		document.getElementById(id).onclick = function(){
 			// salvo i dati nella local storage
-			//localStorage.setItem('global_selected_customer', customerName)
+			localStorage.setItem('global_selected_customer', customerName)
 			localStorage.setItem('global_entityName', el.name)
 			// Carica la pagina.
 			window.location.href = "./02_Dashboard.html?entityName=" + el.name
