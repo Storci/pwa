@@ -26,7 +26,8 @@ jobs:
       - name: install sed package
         run: sudo apt-get install -y sed
       - name: change app version on file
-        run: sed -i 's/Version/V ${{ github.sha }}/' 01_Customers.html
+        run: sed -e 's/Version/V ${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
+        #run: sed -i 's/Version/V ${{ github.sha }}/' 01_Customers.html
       - name: install git
         run: sudo apt install git
       - name: check git version
