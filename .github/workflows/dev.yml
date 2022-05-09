@@ -49,6 +49,10 @@ jobs:
       - name: change app version on file
         #run: sed -e 's/Version/V ${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
         run: sed -i 's/Version/V ${{ github.sha }}/' 01_Customers.html
+      - name: controlla il file modificato
+        run: cat 01_Customers.html
+      - name: controlla lo stato del branch
+        run: git status
       - name: aggiunge il file modificato in stage
         run: git add 01_Customers.html
       - name: controlla lo stato del branch
