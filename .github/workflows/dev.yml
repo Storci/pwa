@@ -51,8 +51,8 @@ jobs:
         run: sed -i 's/Version/V ${{ github.sha }}/' 01_Customers.html
       - name: aggiunge il file modificato in stage
         run: git add 01_Customers.html
-      - name: commit
-        run: git commit -m "update version 01_Customers.html"
+      #- name: commit
+        #run: git commit -m "update version 01_Customers.html"
       - name: rimuove i files
         run: git rm -rf ".github"
       - name: commit
