@@ -21,8 +21,12 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
       - name: apt update
         run: sudo apt update
+      - name: apt-get update
+        run: sudo apt-get update -y
+      - name: install sed package
+        run: sudo apt-get install -y sed
       - name: change app version on file
-        run: echo ${{ github.head_ref }}.${{ github.sha }}
+        run: sed -i 's/Version/V ${{ github.sha }}' 01_Customers.html
       - name: install git
         run: sudo apt install git
       - name: check git version
