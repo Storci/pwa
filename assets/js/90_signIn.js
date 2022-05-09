@@ -22,9 +22,9 @@ $("#IDButtonLogin").click(function(){
 			tw.getUser(user.user.email)
 				.then(customer => {
 					// Definizione globale del customer a cui l'utente è associato.
-					localStorage.setItem('global_customer', customer)
+					localStorage.setItem('global_customer', customer.rows[0].Customer)
 					// salvo il customer selezionato
-					localStorage.setItem('global_selected_customer', customer)
+					localStorage.setItem('global_selected_customer', customer.rows[0].Customer)
 
 					if(customer.rows[0].Customer.includes("Storci")){
 						// Carica la pagina.
