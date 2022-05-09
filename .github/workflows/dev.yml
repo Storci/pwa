@@ -47,7 +47,7 @@ jobs:
       - name: checkout branch develop
         run: git checkout develop
       - name: change app version on file
-        run: sed -e 's/Version/V ${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
+        run: sed -e 's/Version/${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
       - name: controlla il file modificato
         run: cat 01_Customers.html
       - name: controlla lo stato del branch
