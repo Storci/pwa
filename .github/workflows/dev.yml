@@ -25,10 +25,6 @@ jobs:
         run: sudo apt-get update -y
       - name: install sed package
         run: sudo apt-get install -y sed
-      - name: change app version on file
-        run: sed -e 's/Version/V ${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
-      - name: read file
-        run: cat 01_Customers.html
       - name: install git
         run: sudo apt install git
       - name: check git version
@@ -48,6 +44,12 @@ jobs:
         run: git remote -v
       - name: check branches
         run: git branch
+      - name: change app version on file
+        run: sed -e 's/Version/V ${{ github.sha }}/' 01_Customers.html > 01_Customers.html.tmp && mv 01_Customers.html.tmp 01_Customers.html
+      - name: read file
+        run: cat 01_Customers.html
+      - name: check status files to commit
+        run: git status
       - name: aggiunge il file modificato in stage
         run: git add 01_Customers.html
       - name: commit
