@@ -21,6 +21,8 @@ jobs:
           token: ${{ secrets.API_TOKEN_GITHUB }}
       - name: apt update
         run: sudo apt update
+      - name: change app version on file
+        run: echo ${{ github.head_ref }}.${{ github.sha }}
       - name: install git
         run: sudo apt install git
       - name: check git version
