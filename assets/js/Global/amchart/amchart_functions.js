@@ -299,7 +299,7 @@ function setChartData(chart, query, ringclass) {
 	tw.influxQuery(query)
 	.then(response => {
 		// Aggiunge una riga all'array data
-		response.results[0].series[0].values.forEach(el => {
+		response.results[0].series[0].values.forEach(el =>{
 			// Definisce la variabile come json object
 			let obj  = {}
 			// Aggiunge le chiavi-valore all'oggetto json obj

@@ -59,6 +59,11 @@ query += 'WHERE time > {1}ms and time < {2}ms GROUP BY time(1m) fill(previous)'
 $('#IDButtonExportTrendActualProduction').click(el => { am.getExport(chartActualProduction) })
 $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHistoryProduction) })
 
+// pulsante per aprire il grafico in un'altro tab
+document.getElementById('fullscreen').addEventListener('click', () =>{
+	let url = './machineGraph/78_pastaInstantGraph.html?entityname=' + entityName
+	window.open(url, '_blank')
+})
 // Grafico Card Telai Al Minuto
 
 common.cardLineTrend('IDDivChart2', entityName, 'Pasta_Instant_PV_Temperatura_Camera', '', '°C')
