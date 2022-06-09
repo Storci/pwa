@@ -96,6 +96,12 @@ document.getElementById('fullscreen').addEventListener('click', () =>{
 	window.open(url, '_blank')
 })
 
+// pulsante per aprire il grafico in un'altro tab
+document.getElementById('fullscreenHistory').addEventListener('click', () =>{
+	let url = './machineHistoryGraph/87_omnidryerHistoryGraph.html?entityname=' + entityName
+	window.open(url, '_blank')
+})
+
 // Grafico Card Telai Al Minuto
 
 common.cardLineTrend('IDDivChart3', entityName, 'Omnidryer_Tunnel_PV_Temperatura_1', '', '°C')

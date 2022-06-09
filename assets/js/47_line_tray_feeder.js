@@ -71,6 +71,12 @@ document.getElementById('fullscreen').addEventListener('click', () =>{
 	window.open(url, '_blank')
 })
 
+// pulsante per aprire il grafico in un'altro tab
+document.getElementById('fullscreenHistory').addEventListener('click', () =>{
+	let url = './machineHistoryGraph/82_trayFeederHistoryGraph.html?entityname=' + entityName
+	window.open(url, '_blank')
+})
+
 // Grafico Card Telai Al Minuto
 common.cardLineTrend('IDDivChart1', entityName, 'Avanzamento_Telai_Motori_Catena_PV_Telai_Minuto', '', 'trays/m')
 // Grafico card Velocità Motore

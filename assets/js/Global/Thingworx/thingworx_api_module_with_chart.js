@@ -54,7 +54,7 @@ function getDryerHistoryProduction(idTable, entityName, timeStart, timeEnd, char
     // sulla prima riga della tabella, e viene caricato il grafico
 		elem.dispatchEvent(clickEvent)
     // Finita la funzione aspetta un secondo prima di nascondere il widget dell'aggiornamento
-    setTimeout(function() {	$('.lds-dual-ring.history-production-list').hide() }, 1000);
+    setTimeout(function() {	$('').hide() }, 1000);
 	})
 	.catch(error => console.error(error))
 }
@@ -97,9 +97,9 @@ function getLineHistoryProduction(idTable, entityName, timeStart, timeEnd, chart
 				// Definisce la query da inviare a influxdb
 				let subquery = query.replaceAll('{1}', timestampStart).replaceAll('{2}', timestampEnd)
 				// Recupera i dati da influxdb e li visualizza sul grafico
-				am.setChartData(chart, subquery, '.lds-dual-ring.history-production-trend')
+				am.setChartData(chart, subquery, 'IDTrendHistoryProduction','')
 				// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
-				setTimeout(function() {	$('.lds-dual-ring.history-production-trend').hide() }, 1000)
+				setTimeout(function() {	$('').hide() }, 1000)
 			}
 		})
     // Recupera la prima riga della tabella

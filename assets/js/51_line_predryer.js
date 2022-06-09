@@ -65,6 +65,13 @@ document.getElementById('fullscreen').addEventListener('click', () =>{
 	let url = './machineGraph/76_preDryerGraph.html?entityname=' + entityName
 	window.open(url, '_blank')
 })
+
+// pulsante per aprire il grafico in un'altro tab
+document.getElementById('fullscreenHistory').addEventListener('click', () =>{
+	let url = './machineHistoryGraph/86_preDryerHistoryGraph.html?entityname=' + entityName
+	window.open(url, '_blank')
+})
+
 // Grafico Card Telai Al Minuto
 common.cardLineTrend('IDDivChart1', entityName, 'Trabatto_PV_Temperatura_Trabatto', '', '°C')
 

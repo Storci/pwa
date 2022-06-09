@@ -74,6 +74,12 @@ document.getElementById('fullscreen').addEventListener('click', () =>{
 	window.open(url, '_blank')
 })
 
+// pulsante per aprire il grafico in un'altro tab
+document.getElementById('fullscreenHistory').addEventListener('click', () =>{
+	let url = './machineHistoryGraph/81_extruderGraphHistory.html?entityname=' + entityName
+	window.open(url, '_blank')
+})
+
 // ******************** GRAFICO PRODUZIONE ATTUALE ********************
 common.actualLineProduction(chartActualProduction, query, entityName)
 
