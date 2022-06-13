@@ -7,7 +7,7 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 
 // Recupera l'entity name della thing
-let entityName = urlParams.get('entityName')
+let entityName = urlParams.get('entityname')
 
 
 let arrayUM = ['Produzione (kg/h)', 'Pressione Estrusore (Bar)']

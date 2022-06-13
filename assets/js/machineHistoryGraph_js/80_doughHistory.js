@@ -8,7 +8,7 @@ import * as common from "../Global/Common/commonFunctions.js"
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 // Recupera l'entity name della thing
-let entityName = urlParams.get('entityName')
+let entityName = urlParams.get('entityname')
 
 // Istanzia i grafici dell'attuale e dello storico
 // I grafici devono essere istanziati una volta solamente
