@@ -17,6 +17,7 @@ $('#IDButtonSignUp').click(function(){
 
 
   let email = $('#IDEmail').val()
+  let customerCode = $('#Unique').val()
   // Controlla che l'email non sia già stata usata
   // Recupera il record dell'utente dalla tabella di tw
 	tw.getUser(email)
@@ -31,6 +32,7 @@ $('#IDButtonSignUp').click(function(){
 
         if(pass1 == pass2){
           fb.signUpWithEmailPassword(email, pass1, baseURL)
+          tw.service_97_addNewUser(email, customerCode)
         }else{
           $('#IDErrorMessage').css("display", "block")
           $('#IDErrorMessage').text('Error, the 2 passwords are different')
@@ -41,30 +43,29 @@ $('#IDButtonSignUp').click(function(){
 })
 
 
-// una chiamata rest per recuperare tutta la lista delle nazione 
-  var url = "https://restcountries.com/v2/all"
+// una chiamata rest per recuperare tutta la lista delle nazione
+var url = "https://restcountries.com/v2/all"
 
+// Imposta i settings da utilizzare nelle REST API.
+// Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
+let settings = {
+    "url"     : url,
+    "method"  : "GET",
+    "timeout" : 0,
+    "headers" : {},
+    "data": "",
+    "success": function(country){
+        let results = '<option value="-1">Please Select a Country or State</option>'
+        for(let i = 0; i < country.length; i++){
 
-        // Imposta i settings da utilizzare nelle REST API.
-        // Nel campo data vengono inseriti i parametri di ingresso del servizio di TW.
-        let settings = {
-            "url"     : url,
-            "method"  : "GET",
-            "timeout" : 0,
-            "headers" : {},
-            "data": "",
-            "success": function(country){
-                let results = '<option value="-1">Please Select a Country or State</option>'
-                for(let i = 0; i < country.length; i++){
-                    
-                    results += '<option>'+ country[i].name +'</option>'
-                    
-                }
-                $("#IDCountries").html(results)
-            }
-        };
+            results += '<option>'+ country[i].name +'</option>'
 
-        // Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+        }
+        $("#IDCountries").html(results)
+    }
+};
 
-            // Esegue la chiamata REST API.
-            $.ajax(settings).then(response => console.log(response));
+// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+
+// Esegue la chiamata REST API.
+$.ajax(settings).then(response => console.log(response));

@@ -76,6 +76,19 @@ function service_90_sidebar(entityName){
 }
 
 /*
+	service_97_addNewUser
+	passsare l'email dell'utente che si vuole aggiungere
+	passare il codice customer per indicare sotto quale customer appartiene l'utente
+*/
+function service_97_addNewUser(username, customerCode){
+	// Definisce l'url da richiamare per la REST API
+	settings.url  = baseUrl + bootstrapThing + 'service_97_addNewUser'
+	settings.data = JSON.stringify({username:username, customerCode:customerCode})
+	// Ritorna una promise, in questo modo il valore ritorna solamente quando la REST API è conclusa.
+	return new Promise(function(resolve){ $.ajax(settings).done(response => resolve(response)) })
+}
+
+/*
 	service_98_setFirebaseToken
 	l'entityName da passare deve corrispondere alla thing customer (es. Storci.Thing.Canossa)
 	recupera i dati generali di tutte le macchine installate dal cliente.
@@ -707,6 +720,8 @@ export{
 	service_01_getDryersGeneralInfo,
 	service_02_getLinesGeneralInfo,
 	service_90_sidebar,
+	service_97_addNewUser,
+	service_98_setFirebaseToken,
 	getPropertyName,
 	getCustomersList,
 	influxQuery,
@@ -729,6 +744,5 @@ export{
 	getLineDoughHistoryProduction,
 	getLineAlertsActive,
 	getDryerTimeRange,
-	getLineTimeRange,
-	service_98_setFirebaseToken
+	getLineTimeRange
 }
