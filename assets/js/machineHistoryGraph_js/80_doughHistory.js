@@ -49,4 +49,5 @@ query += 'FROM "' + entityName + '" '
 query += 'WHERE time > timeStart and time < timeEnd GROUP BY time(10s) fill(previous)'
 
 // ******************** STORICO PRODUZIONI ********************
-common.historyLineProduction(chartHistoryProduction, query, entityName)
+//common.historyLineProduction(chartHistoryProduction, query, entityName)
+am.setChartData(chartHistoryProduction, 'IDTrendHistoryProduction','', query, entityName)
