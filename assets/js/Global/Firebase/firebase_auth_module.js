@@ -21,17 +21,15 @@ function signUpWithEmailPassword(email, password, baseURL) {
             db.collection('users').doc(userCredential.user.email).set({
             firstName : signUpForm['IDName'].value,
             lastName : signUpForm['IDLastName'].value,
+			mail : signUpForm['IDEmail'].value,
             phoneNumber : signUpForm['IDPhoneNumber'].value,
             Countries : signUpForm['IDCountries'].value,
 			companyName: signUpForm['IDCompanyName'].value
-        });
-	
-	}).then(() =>{
-        let user = userCredential.user
-		window.location.href = baseURL + 'signUpConfirmed.html'
-    }).then(() =>{
 
-	})
+        });
+	}).then(() =>{
+		window.location.href = './90_signIn.html'
+    })
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message

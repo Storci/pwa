@@ -65,7 +65,7 @@ $('#IDButtonResetPassword').click(function(e){
             $("#successAlert").css('display', 'block')
             setTimeout(function(){
                 $("#successAlert").css('display', 'none')
-            },3000)
+            },5000)
                
             window.location.href = './90_signIn.html'
         })

@@ -33,6 +33,7 @@ $('#IDButtonSignUp').click(function(){
         if(pass1 == pass2){
           fb.signUpWithEmailPassword(email, pass1, baseURL)
           tw.service_97_addNewUser(email, customerCode)
+        
         }else{
           $('#IDErrorMessage').css("display", "block")
           $('#IDErrorMessage').text('Error, the 2 passwords are different')
