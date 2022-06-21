@@ -22,12 +22,16 @@ function signUpWithEmailPassword(email, password, baseURL) {
             firstName : signUpForm['IDName'].value,
             lastName : signUpForm['IDLastName'].value,
             phoneNumber : signUpForm['IDPhoneNumber'].value,
-            Countries : signUpForm['IDCountries'].value
+            Countries : signUpForm['IDCountries'].value,
+			companyName: signUpForm['IDCompanyName'].value
         });
+	
 	}).then(() =>{
         let user = userCredential.user
 		window.location.href = baseURL + 'signUpConfirmed.html'
-    })
+    }).then(() =>{
+
+	})
 	.catch((error) => {
 		let errorCode = error.code
 		let errorMessage = error.message
@@ -163,6 +167,46 @@ function setPersistenceNone() {
 	  });
 }*/
 
+/*function getUserData(email) {
+	let dbUser = firebase.firestore();
+	dbUser.collection('users').get(email).then((snapshot) =>{
+		snapshot.docs.forEach(doc =>{
+			console.log(doc.data())
+		})
+	 })
+}*/
+
+
+/*function getUserData(email, pass){
+	firebase.auth().createUserWithEmailAndPassword(email)
+	.then((userCredential) =>{
+		let db = firebase.firestore();
+		db.collection('users').doc(userCredential.user.email).get( {
+			firstName : signUpForm['display_name'].value,
+            lastName : signUpForm['display_lastname'].value,
+            phoneNumber : signUpForm['display_country'].value,
+            Countries : signUpForm['display_telephone'].value,
+			companyName: signUpForm['display_company'].value
+		})
+	})
+}
+*/
+
+/*function getUserData(){
+	firebase.auth().onAuthStateChanged((user) => {
+		if (user) {
+		  // User is signed in, see docs for a list of available properties
+		  // https://firebase.google.com/docs/reference/js/firebase.User
+		  var firstName = user.firstName;
+		  
+		  // ...
+		} else {
+		  // User is signed out
+		  // ...
+		}
+	  });
+}*/
+
 export {
 	signInWithEmailPassword,
 	signUpWithEmailPassword,
@@ -175,4 +219,6 @@ export {
 	onAuthStateChanged_2, 
 	//userUpdatePassword, 
 	//changePassword
+	//getUserData
+	
 };

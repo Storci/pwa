@@ -22,10 +22,10 @@ $('#IDButtonSignUp').click(function(){
   // Recupera il record dell'utente dalla tabella di tw
 	tw.getUser(email)
 		.then(tableRow => {
-      if(tableRow.rows.length > 0){
+    /*  if(tableRow.rows.length > 0){
         $('#IDErrorMessageSignUp').css("display", "block")
         $('#IDErrorMessageSignUp').text('Error, the email is already use')
-      }else{
+      }else{*/
         // controlla che le 2 password coincidano
         let pass1 = $('#IDPassword').val()
         let pass2 = $('#IDPassword_repeat').val()
@@ -38,7 +38,8 @@ $('#IDButtonSignUp').click(function(){
           $('#IDErrorMessage').text('Error, the 2 passwords are different')
         }
       }
-    })
+    
+    )
 		.catch(error => console.error(error))
 })
 
