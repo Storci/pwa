@@ -71,14 +71,11 @@ let country  = document.getElementById('display_country')
                 //console.log(doc.data(user.email.Countries))
 
            firstname.value = doc.get('firstName')
-           console.log(firstname)
            lastname.value = doc.get('lastName')
            email.value = doc.get('mail')
            company.value = doc.get('companyName')
            telephone.value = doc.get('phoneNumber')
            country.value = doc.get('Countries')
-           console.log(company)
-           
         });
     });
  }
@@ -88,8 +85,6 @@ let country  = document.getElementById('display_country')
 function updateUserInfo(){
 
         const userDocRef =  firebase.firestore().collection('users').doc(firebase.auth().currentUser.email)
-
-
         userDocRef.update({
             firstName:editProfile["display_name"].value,
             lastName:editProfile["display_lastname"].value,
