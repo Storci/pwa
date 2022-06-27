@@ -55,11 +55,11 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Name</label>                                 
-                                <input type="text" class="form-control" id="IDName" placeholder="Enter First Name" aria-describedby="emailHelp"/> 
+                                <input type="text" class="form-control" id="IDName" placeholder="Enter First Name" aria-describedby="emailHelp" required/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Last Name</label>                                 
-                                <input type="text" class="form-control" id="IDLastName" placeholder=" Enter Last Name"/> 
+                                <input type="text" class="form-control" id="IDLastName" placeholder=" Enter Last Name" required/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -69,7 +69,7 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Telephone Number</label>                                 
-                                <input type="number" class="form-control" id="IDPhoneNumber" placeholder="Enter Telephone" aria-describedby="emailHelp"/> 
+                                <input type="number" class="form-control" id="IDPhoneNumber" placeholder="Enter Telephone" aria-describedby="emailHelp" required/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Country / State</label>                                 
@@ -86,11 +86,11 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">E-mail</label>                                 
-                                <input type="email" class="form-control" id="IDEmail" placeholder="Enter email" aria-describedby="emailHelp"/> 
+                                <input type="email" class="form-control" id="IDEmail" placeholder="Enter email" aria-describedby="emailHelp" required/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Confirm E-mail</label>                                 
-                                <input type="email" class="form-control" id="IDEmail_repeat" placeholder="Confirm E-mail"/> 
+                                <input type="email" class="form-control" id="IDEmail_repeat" placeholder="Confirm E-mail" required/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -100,11 +100,11 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="exampleInputEmail1">Password</label>                                 
-                                <input type="password" class="form-control" id="IDPassword" placeholder="Password" aria-describedby="emailHelp"/> 
+                                <input type="password" class="form-control" id="IDPassword" placeholder="Password" aria-describedby="emailHelp" required/> 
                             </div>                             
                             <div class="mb-3"> 
                                 <label for="exampleInputPassword1">Confirm Password</label>                                 
-                                <input type="password" class="form-control" id="IDPassword_repeat" placeholder=" Repeat Password"/> 
+                                <input type="password" class="form-control" id="IDPassword_repeat" placeholder=" Repeat Password" required/> 
                             </div>                             
                             <div> 
 </div>                             
@@ -114,19 +114,19 @@ opacity: 0.8;">
                         <div class="row row-cols-1 row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-xxl-2"> 
                             <div class="mb-3"> 
                                 <label for="formInput4">Company Name</label>                                 
-                                <input type="text" class="form-control" id="IDCompanyName" placeholder="Enter company Name"/>
-                            </div>
+                                <input type="text" class="form-control" id="IDCompanyName" placeholder="Enter company Name" required/> 
+                            </div>                             
                             <div class="mb-3"> 
                                 <label for="formInput4">Unique Code</label>                                 
-                                <input type="text" class="form-control" id="Unique" placeholder="Enter Unique Customer Code"/> 
+                                <input type="text" class="form-control" id="Unique" placeholder="Enter Unique Customer Code" required/> 
                             </div>                             
                         </div>                         
                         <p style="color: var(--bs-red); font-weight: bold; font-size: 14px;
 
                         /* background: #3b3838 */
-                        padding: 5px; display: block;" id="IDErrorMessageSignUp"></p> 
-                    </form>                     
-                    <button id="IDButtonSignUp" class="btn btn-contrast btn-primary">Submit</button>                     
+                        padding: 5px; display: block;" id="IDErrorMessageSignUp"></p>
+                        <button id="IDButtonSignUp" class="btn btn-contrast btn-primary d-inline-block w-100" type="submit">Submit</button>                         
+                    </form>                                          
                 </div>                 
             </div>             
         </div>         
