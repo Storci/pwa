@@ -96,7 +96,7 @@ $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHisto
 
 // pulsante per aprire il grafico in un'altro tab
 document.getElementById('fullscreen').addEventListener('click', () =>{
-	let url = '61_actualCellGraph.html?entityname=' + entityName
+	let url = '61_actualCellGraph.html?entityName=' + entityName
 	window.open(url, '_blank')
 })
 
