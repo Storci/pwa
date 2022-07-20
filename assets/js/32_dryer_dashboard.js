@@ -14,6 +14,11 @@ let pageURL = window.location.href
 */
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
+const startQuery = window.location.search
+const startUrlParams = new URLSearchParams(startQuery)
+const endQuery = window.location.search
+const endUrlParams = new URLSearchParams(endQuery)
+
 
 // Recupera il nome dell'utente da firebase, controlla che sia loggato.
 // Nel caso non fosse loggato richiama la pagina di login
@@ -24,12 +29,19 @@ let selectedLine 		 = localStorage.getItem("global_selected_cell")
 //let entityName			 = localStorage.getItem('global_selected_cell_entityName')
 // Recupera l'entity name della thing
 let entityName = urlParams.get('entityName')
+console.log(entityName)
 // Imposta il nome del cliente nella breadcrumb
 // Vengono sostituiti tutti gli underscore presenti nel nome
 //$("#IDBreadcrumbCustomer").text(selectedCustomer.replace(/_/g, ' '));
 // Recupera la lingua utilizzata dall'utente e sostituisce tutti i testi
 // ATTENZIONE - Questa istruzione traduce solamente i testi statici e non
 // i testi caricati dalle funzioni.
+
+let timeStart = startUrlParams.get('timeStart')
+console.log(timeStart)
+let timeEnd = urlParams.get ('timeEnd')
+
+
 lang.getLanguage()
 
 // Istanzia i grafici dell'attuale e dello storico
@@ -97,6 +109,12 @@ $('#IDButtonExportTrendHistoryProduction').click(el => { am.getExport(chartHisto
 // pulsante per aprire il grafico in un'altro tab
 document.getElementById('fullscreen').addEventListener('click', () =>{
 	let url = '61_actualCellGraph.html?entityName=' + entityName
+	window.open(url, '_blank')
+})
+// pulsante per aprire il grafico storico delle celle in un'altro tab
+document.getElementById('fullscreenHistory').addEventListener('click',()=>{
+	//let url = '60_cellGrapHistory.html?timestart=timeStart&timeend=timeEnd&entityname=' + entityName
+	let url ='60_cellGrapHistory.html?'+'entityName='+ entityName +'timeStart=' + timeStart + 'timeEnd=' + timeEnd
 	window.open(url, '_blank')
 })
 

@@ -39,13 +39,22 @@
         <script defer src="https://cdn.amcharts.com/lib/4/themes/dark.js"></script>         
         <script defer src="//cdn.amcharts.com/lib/4/plugins/rangeSelector.js"></script>         
         <script src="./assets/js/sidebar.js" type="module"></script>         
-        <script defer src="./assets/js/60_cellGraphHistory.js" type="module"></script>         
+        <script  src="./assets/js/60_cellGraphHistory.js" type="module"></script>         
         <!--<script src="./assets/js/Global/Common/Theme.js" type="module"></script>-->
     </head> 
     <body>
         <div class="container">
-</div>
-      
-        
+            <div class="card mb-5 vh-100"> 
+                <div class="card-body d-flex flex-column"> 
+                    <div data-pg-name="Title"> 
+                        <h6 class="text-muted">Trend Essicazione</h6> 
+                    </div>                     
+                    <div class="pg-empty-placeholder" data-pg-name="legend" id="IDTrendHistoryProduction"></div>                     
+                    <div class="flex-grow-1 flex-shrink-1 pg-empty-placeholder" data-pg-name="chart" id="IDLegendHistoryProduction"></div>                     
+                    <div class="pg-empty-placeholder"></div>                     
+                                
+                </div>
+            </div>             
+        </div>
     </body>
 </html>

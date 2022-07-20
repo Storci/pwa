@@ -44,13 +44,16 @@ function actualDryerProduction(chart, query, entityName){
 }
 // La funzione recupera i dati da thingworx e li visualizza sul grafico
 // della produzione storica.
-function historyDryerProduction(chart, query, entityName){
+function historyDryerProduction(chart, query, entityName, timeStart, timeEnd){
 	// Visualizza il widget che indica il valore in aggiornamento
 	$('.lds-dual-ring.history-production-list').show()
 
 	// Definisce le variabili come date
 	let timeStartHistory = new Date()
 	let timeEndHistory   = new Date()
+
+
+
 	// Imposta X giorni prima della data odierna
 	timeStartHistory.setDate(timeStartHistory.getDate() - 14)
 	// Imposta i 2 data picker con le date calcolate prima
@@ -61,7 +64,7 @@ function historyDryerProduction(chart, query, entityName){
 	// Recupera la lista delle produzioni con il time range impostato di default
 	// Da data Attuale a data attuale - 14 giorni.
 	// Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-	tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+	tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query, timeStart,timeEnd)
 	// Listener sul cambio di valore della data di inizio produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
 	// Viene recuperata di nuovo la lista delle produzioni con il range time aggiornato
@@ -73,7 +76,7 @@ function historyDryerProduction(chart, query, entityName){
 		let timeEndHistory   = new Date($('#IDTimeEnd').val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query,timeStart, timeEnd)
 	});
 	// Listener sul cambio di valore della data di fine produzione
 	// Al cambio di valore viene eseguita la funzione seguente.
@@ -86,7 +89,7 @@ function historyDryerProduction(chart, query, entityName){
 		let timeEndHistory   = new Date($(this).val())
 	  // Recupera la lista delle produzioni
 	  // Per default viene visualizzata la prima produzione dell'elenco. (l'ultima produzione effettuata in ordine cronologico)
-		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query)
+		tw_chart.getDryerHistoryProduction('#IDHistoryTableBody', entityName, timeStartHistory, timeEndHistory, chart, query, timeStart,timeEnd)
 	});
 
 	// Abilita onclick sulla card
@@ -101,6 +104,12 @@ function historyDryerProduction(chart, query, entityName){
 		// Nasconde l'icona del caricamento alla fine delle funzione + 1s dopo
 		setTimeout(function() {	$('.lds-dual-ring.history-production-trend').hide() }, 1000)
 	})
+
+	/*$('#fullscreenHistory').click(() =>{
+		alert("auch")
+		let subquery = query.replaceAll('timeStart', timeStart).replaceAll('timeEnd', timeEnd)
+		am.setChartData(chart, subquery,'')
+	})*/
 
 }
 
